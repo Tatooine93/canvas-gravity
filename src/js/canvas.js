@@ -6,6 +6,8 @@ const c = canvas.getContext('2d')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
+document.body.style.overflow = 'hidden';
+
 const mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
