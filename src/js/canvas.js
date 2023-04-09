@@ -13,8 +13,10 @@ const mouse = {
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']
 
-let gravity = 1;
-let friction = 0.99;
+//settings
+let gravity = 0.2;
+let friction = 0.98;
+let ballsNumber = 100;
 
 // Event Listeners
 addEventListener('mousemove', (event) => {
@@ -57,11 +59,11 @@ class Ball {
       this.dy += gravity;
     }
 
-    if(this.x + this.radius + this.dx > canvas.width || this.x - this.radius<= 0) {
-      this.dx = -this.dx;
+    if(this.x + this.radius + this.dx > canvas.width || this.x - this.radius <= 0) {
+      this.dx = -this.dx * friction;
     }
 
-    this.x += this.dx
+    this.x += this.dx;
     this.y += this.dy;
     this.draw()
   }
@@ -73,7 +75,7 @@ let ballArray;
 
 function init() {
   ballArray = [];
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < ballsNumber; i++) {
       let radius = randomIntFromRange(4, 20);
       let x = randomIntFromRange(radius, canvas.width - radius);
       let y = randomIntFromRange(0, canvas.height - radius);
@@ -101,7 +103,7 @@ function animate() {
     ball.update()
   }
 
-  c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y)
+  //c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y)
   // objects.forEach(object => {
   //  object.update()
   // })

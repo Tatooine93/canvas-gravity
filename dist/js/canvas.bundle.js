@@ -118,9 +118,11 @@ var mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
 };
-var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66'];
-var gravity = 1;
-var friction = 0.99; // Event Listeners
+var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']; //settings
+
+var gravity = 0.2;
+var friction = 0.98;
+var ballsNumber = 100; // Event Listeners
 
 addEventListener('mousemove', function (event) {
   mouse.x = event.clientX;
@@ -164,7 +166,7 @@ var Ball = /*#__PURE__*/function () {
       }
 
       if (this.x + this.radius + this.dx > canvas.width || this.x - this.radius <= 0) {
-        this.dx = -this.dx;
+        this.dx = -this.dx * friction;
       }
 
       this.x += this.dx;
@@ -183,7 +185,7 @@ var ballArray;
 function init() {
   ballArray = [];
 
-  for (var i = 0; i < 300; i++) {
+  for (var i = 0; i < ballsNumber; i++) {
     var radius = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(4, 20);
     var x = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(radius, canvas.width - radius);
     var y = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["randomIntFromRange"])(0, canvas.height - radius);
@@ -212,17 +214,17 @@ function animate() {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       ball = _step.value;
       ball.update();
-    }
+    } //c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y)
+    // objects.forEach(object => {
+    //  object.update()
+    // })
+    //ball.update()
+
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
-
-  c.fillText('HTML CANVAS BOILERPLATE', mouse.x, mouse.y); // objects.forEach(object => {
-  //  object.update()
-  // })
-  //ball.update()
 }
 
 init();
