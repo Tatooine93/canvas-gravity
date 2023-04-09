@@ -121,7 +121,8 @@ var mouse = {
 var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']; //settings
 
 var gravity = 0.2;
-var friction = 0.98;
+var friction = 0.96;
+var airResitance = 0.99;
 var ballsNumber = 100; // Event Listeners
 
 addEventListener('mousemove', function (event) {
@@ -161,12 +162,13 @@ var Ball = /*#__PURE__*/function () {
     value: function update() {
       if (this.y + this.radius + this.dy > canvas.height) {
         this.dy = -this.dy * friction;
+        this.dx = this.dx * airResitance;
       } else {
         this.dy += gravity;
       }
 
       if (this.x + this.radius + this.dx > canvas.width || this.x - this.radius <= 0) {
-        this.dx = -this.dx * friction;
+        this.dx = -this.dx;
       }
 
       this.x += this.dx;
