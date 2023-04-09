@@ -114,6 +114,7 @@ var canvas = document.querySelector('canvas');
 var c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
+document.body.style.overflow = 'hidden';
 var mouse = {
   x: innerWidth / 2,
   y: innerHeight / 2
