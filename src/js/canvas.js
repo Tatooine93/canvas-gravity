@@ -15,7 +15,8 @@ const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']
 
 //settings
 let gravity = 0.2;
-let friction = 0.98;
+let friction = 0.96;
+let airResitance = 0.99;
 let ballsNumber = 100;
 
 // Event Listeners
@@ -54,14 +55,16 @@ class Ball {
   update() {
     if (this.y + this.radius + this.dy > canvas.height) {
       this.dy = -this.dy * friction
+      this.dx = this.dx * airResitance
     }
     else {
       this.dy += gravity;
     }
 
     if(this.x + this.radius + this.dx > canvas.width || this.x - this.radius <= 0) {
-      this.dx = -this.dx * friction;
+      this.dx = -this.dx;
     }
+
 
     this.x += this.dx;
     this.y += this.dy;
