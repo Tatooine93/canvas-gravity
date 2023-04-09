@@ -69,11 +69,10 @@ class Ball {
 
 // Implementation
 let ball
-let ballArray = [];
+let ballArray;
 
 function init() {
-
-  
+  ballArray = [];
   for (let i = 0; i < 300; i++) {
       let radius = randomIntFromRange(4, 20);
       let x = randomIntFromRange(radius, canvas.width - radius);
