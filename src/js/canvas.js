@@ -74,7 +74,6 @@ class Ball {
 }
 
 // Implementation
-let ball
 let ballArray;
 
 function init() {
@@ -103,7 +102,7 @@ function animate() {
     ballArray[i].update()
   } */
 
-  for (ball of ballArray) {
+  for (const ball of ballArray) {
     ball.update()
   }
 
