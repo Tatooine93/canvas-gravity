@@ -123,7 +123,6 @@ var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']; //settings
 
 var gravity = 0.2;
 var friction = 0.96;
-var airResitance = 0.99;
 var ballsNumber = 100; // Event Listeners
 
 addEventListener('mousemove', function (event) {
@@ -163,7 +162,7 @@ var Ball = /*#__PURE__*/function () {
     value: function update() {
       if (this.y + this.radius + this.dy > canvas.height) {
         this.dy = -this.dy * friction;
-        this.dx = this.dx * airResitance;
+        this.dx = this.dx * friction;
       } else {
         this.dy += gravity;
       }

@@ -1,4 +1,4 @@
-import utils, { randomColor, randomIntFromRange } from './utils'
+import utils, { distance, randomColor, randomIntFromRange } from './utils'
 
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
@@ -18,7 +18,6 @@ const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']
 //settings
 let gravity = 0.2;
 let friction = 0.96;
-let airResitance = 0.99;
 let ballsNumber = 100;
 
 // Event Listeners
@@ -57,7 +56,7 @@ class Ball {
   update() {
     if (this.y + this.radius + this.dy > canvas.height) {
       this.dy = -this.dy * friction
-      this.dx = this.dx * airResitance
+      this.dx = this.dx * friction
     }
     else {
       this.dy += gravity;
